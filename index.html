@@ -17,8 +17,8 @@
     <header class="bg-sage-100 p-4">
         <nav class="container mx-auto flex justify-between items-center">
             <div class="text-2xl">Garbage Revolution Limited</div>
-            <button class="lg:hidden">Menu</button>
-            <div class="hidden lg:flex space-x-6">
+            <button class="lg:hidden" id="menuButton">Menu</button>
+            <div class="hidden lg:flex space-x-6" id="navLinks">
                 <a href="#about" class="hover:text-green-700">About</a>
                 <a href="#services" class="hover:text-green-700">Services</a>
                 <a href="#contact" class="hover:text-green-700">Contact</a>
@@ -33,10 +33,20 @@
             <div class="text-white max-w-2xl">
                 <h1 class="text-5xl mb-6">Waste-Free Future Campaign</h1>
                 <p class="text-xl mb-8">Keeping Umahia Clean and Green</p>
-                <button class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700">
+                <a href="https://api.whatsapp.com/send?phone=2347083777374&text=Hello,%20I'd%20Like%20To%20Subscribe%20To%20Garbage%20Revolution%20Limited" class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 inline-block">
                     Get Started
-                </button>
+                </a>
             </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl mb-12 text-center">About Us</h2>
+            <p class="text-xl text-center max-w-2xl mx-auto">
+                Garbage Revolution Limited is dedicated to creating a waste-free future by providing efficient and eco-friendly waste management solutions. Our mission is to keep Umahia clean and green through innovative services and community engagement.
+            </p>
         </div>
     </section>
 
@@ -47,15 +57,15 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="border border-green-700 p-6 rounded-lg">
                     <h3 class="text-xl mb-4">Garden Debris Removal</h3>
-                    <button class="bg-gray-800 text-white px-6 py-2 rounded">Book Now</button>
+                    <a href="https://api.whatsapp.com/send?phone=2347083777374&text=Hello,%20I'd%20Like%20To%20Subscribe%20To%20Garbage%20Revolution%20Limited" class="bg-gray-800 text-white px-6 py-2 rounded inline-block">Book Now</a>
                 </div>
                 <div class="border border-green-700 p-6 rounded-lg">
                     <h3 class="text-xl mb-4">Home Waste Pickup</h3>
-                    <button class="bg-gray-800 text-white px-6 py-2 rounded">Book Now</button>
+                    <a href="https://api.whatsapp.com/send?phone=2347083777374&text=Hello,%20I'd%20Like%20To%20Subscribe%20To%20Garbage%20Revolution%20Limited" class="bg-gray-800 text-white px-6 py-2 rounded inline-block">Book Now</a>
                 </div>
                 <div class="border border-green-700 p-6 rounded-lg">
                     <h3 class="text-xl mb-4">Construction Waste Disposal</h3>
-                    <button class="bg-gray-800 text-white px-6 py-2 rounded">Book Now</button>
+                    <a href="https://api.whatsapp.com/send?phone=2347083777374&text=Hello,%20I'd%20Like%20To%20Subscribe%20To%20Garbage%20Revolution%20Limited" class="bg-gray-800 text-white px-6 py-2 rounded inline-block">Book Now</a>
                 </div>
             </div>
         </div>
@@ -87,13 +97,51 @@
         <div class="container mx-auto px-4">
             <div class="max-w-xl mx-auto">
                 <h2 class="text-4xl mb-8">Sign Up</h2>
-                <form class="space-y-4">
-                    <input type="email" placeholder="Enter Your Email" class="w-full p-3 border rounded" required>
-                    <button class="bg-gray-800 text-white px-8 py-3 rounded">Subscribe</button>
+                <form id="subscribeForm" class="space-y-4">
+                    <input type="tel" id="whatsappNumber" placeholder="Enter Your WhatsApp Number" class="w-full p-3 border rounded" required>
+                    <button type="submit" class="bg-gray-800 text-white px-8 py-3 rounded">Subscribe</button>
                 </form>
                 <div class="mt-12">
                     <p class="mb-2">0708-377-7374</p>
                     <p class="mb-2">garbagerevolution80@gmail.com</p>
                     <p class="mb-4">Umuahia, Abia, Nigeria</p>
                     <div class="flex space-x-4">
-                        <a href="#
+                        <a href="https://api.whatsapp.com/send?phone=2347083777374&text=Hello,%20I'd%20Like%20To%20Subscribe%20To%20Garbage%20Revolution%20Limited" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Chat on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script for Menu Button and Form Submission -->
+    <script>
+        // Toggle menu for mobile
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('hidden');
+            navLinks.classList.toggle('flex'); // Ensure it uses flexbox
+            navLinks.classList.toggle('flex-col'); // Stack items vertically
+            navLinks.classList.toggle('space-y-4'); // Add spacing between items
+            navLinks.classList.toggle('text-center'); // Center-align text
+            navLinks.classList.toggle('bg-sage-100'); // Match header background
+            navLinks.classList.toggle('p-4'); // Add padding for better spacing
+        });
+
+        // Handle form submission
+        document.getElementById('subscribeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+            // Get the WhatsApp number input
+            const whatsappNumber = document.getElementById('whatsappNumber').value;
+            // Validate the input (basic check for a valid number)
+            if (!whatsappNumber || !/^\d+$/.test(whatsappNumber)) {
+                alert('Please enter a valid WhatsApp number.');
+                return;
+            }
+            // Redirect to WhatsApp with the user's number
+            const message = `Hello, I'd Like To Subscribe To Garbage Revolution Limited. My WhatsApp number is ${whatsappNumber}.`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=2347083777374&text=${encodeURIComponent(message)}`;
+            window.location.href = whatsappUrl;
+        });
+    </script>
+</body>
+</html>
